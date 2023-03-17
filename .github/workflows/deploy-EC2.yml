@@ -31,7 +31,7 @@ jobs:
 
     - name: Build, tag, and push image to Amazon ECR
       env:
-        ECR_REGISTRY: 927190304276.ap-south-1.amazonaws.com.
+        ECR_REGISTRY: 927190304276.ap-south-1.amazonaws.com
         ECR_REPOSITORY: ecr-for-ec2
         IMAGE_TAG: sample_image
       run: |
