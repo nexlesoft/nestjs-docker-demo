@@ -3,7 +3,6 @@ name: Build and push image to ECR
 on: push
 
 env:
-  EC2_HOST: 18.136.101.148
   SSH_USER: ubuntu
   
 jobs:
@@ -71,9 +70,9 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         name: id_rsa
         known_hosts: ${{ secrets.EC2_HOST }}
-    - name: ssh
+    - name: Install Docker service && pull image from ECR
       run: |
-          ssh ${{ secrets.USERNAME }}@${{ secrets.KNOWN_HOSTS }}
+          ssh $SSH_USER@${{ secrets.KNOWN_HOSTS }}
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
