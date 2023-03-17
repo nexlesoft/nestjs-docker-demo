@@ -72,7 +72,7 @@ jobs:
         known_hosts: ${{ secrets.EC2_HOST }}
     - name: Install Docker service && pull image from ECR
       run: |
-          ssh ubuntu@18.136.101.148
+          sssh -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@18.136.101.148
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
