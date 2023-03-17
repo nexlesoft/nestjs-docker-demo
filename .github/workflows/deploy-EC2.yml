@@ -36,4 +36,6 @@ jobs:
         IMAGE_TAG: sample_image
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker tag ecr-for-ec2:latest 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:latest
+        docker push 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:latest
+       # docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
