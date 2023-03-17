@@ -64,28 +64,20 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
-    - name: Configure SSH
+
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with:
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        name: id_rsa
+        known_hosts: ${{ secrets.EC2_HOST }}
+    - name: ssh
       run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/github-actions-key
-          chmod 600 ~/.ssh/github-actions-key
-          cat >>~/.ssh/config <<END
-          Host ec2
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/github-actions-key
-            StrictHostKeyChecking no
-          END
-          
-      env:
-          SSH_HOST: ${{ env.EC2_HOST }}
-          SSH_USER: ${{ env.SSH_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            sudo apt-get update
-            sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
-            curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-            sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-            sudo apt update
-            sudo apt install docker-ce -y
-            docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          ssh ${{ secrets.USERNAME }}@${{ secrets.KNOWN_HOSTS }}
+          sudo apt-get update
+          sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
+          curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+          sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+          sudo apt update
+          sudo apt install docker-ce -y
+          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
