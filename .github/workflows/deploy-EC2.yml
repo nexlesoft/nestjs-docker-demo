@@ -63,6 +63,11 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+    - name: install AWS CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install awscli
+        aws --version
 
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
@@ -72,7 +77,7 @@ jobs:
         known_hosts: ${{ secrets.EC2_HOST }}
     - name: Install Docker service && pull image from ECR
       run: |
-          ssh ubuntu@18.142.180.197
+          ssh -i ubuntu@18.136.201.138.ap-southeast-1.compute.external
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
