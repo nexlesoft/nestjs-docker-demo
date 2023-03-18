@@ -68,11 +68,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install awscli
         aws --version
-        aws configure
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-south-1
+        aws configure <<EOF
+        ${{ secrets.AWS_ACCESS_KEY_ID }}
+        ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        ap-south-1
+        EOF
         
     - name: Install SSH key
       uses: shimataro/ssh-key-action@v2
