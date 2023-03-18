@@ -73,11 +73,10 @@ jobs:
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
-        name: id_rsa
+        name: ubuntu
         known_hosts: ${{ secrets.EC2_HOST }}
     - name: Install Docker service && pull image from ECR
       run: |
-          ssh -i ec2_key.pem ubuntu@18.136.201.138.ap-southeast-1.compute.external
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
           curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
