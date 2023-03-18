@@ -78,7 +78,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         name: ubuntu
         known_hosts: ${{ secrets.EC2_HOST }}
-        scripts:
+        run: |
           ifconfig
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
