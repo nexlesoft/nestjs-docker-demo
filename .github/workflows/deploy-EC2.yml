@@ -84,4 +84,4 @@ jobs:
           sudo apt update
           sudo apt install docker-ce -y
           docker -v
-          docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
