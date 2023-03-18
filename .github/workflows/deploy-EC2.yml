@@ -72,14 +72,13 @@ jobs:
       run: aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ap-south-1
 
         
-    - name: Install SSH key
+    - name: SSH to EC2 instance && install docker service && pull docker image from ECR
       uses: shimataro/ssh-key-action@v2
       with:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         name: ubuntu
         known_hosts: ${{ secrets.EC2_HOST }}
-    - name: Install Docker service && pull image from ECR
-      run: |
+        scripts:
           ifconfig
           sudo apt-get update
           sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
