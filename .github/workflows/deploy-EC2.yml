@@ -86,7 +86,7 @@ jobs:
     - name: Configure AWS credentials
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ap-south-1
-        ssh ubuntu@ec2-52.221.180.99.compute-1.amazonaws.com -w V@nBinh1712@
+        ssh ubuntu@ec2-52.221.180.99.compute-1.amazonaws.com -p V@nBinh1712@
         echo "123"
         
     - name: SSH to EC2 instance && install docker service && pull docker image from ECR
@@ -96,7 +96,7 @@ jobs:
           username: ubuntu
           password: ${{ secrets.EC2_INSTANCE_PASSWORD }}
           run: |
-            ssh ubuntu@ec2-52.221.180.99.compute-1.amazonaws.com -w V@nBinh1712@
+            ssh ubuntu@ec2-52.221.180.99.compute-1.amazonaws.com -p V@nBinh1712@
             ifconfig
             sudo apt-get update
             sudo apt install apt-transport-https ca-certificates curl software-properties-common -y
