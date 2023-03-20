@@ -62,12 +62,12 @@ jobs:
     needs: build
     steps:
     
-    - name: Get EC2 public IP address
-      id: ec2-ip
-      run: |
-          instance_id="i-09a51f9f4186b111e"
-          ip=$(aws ec2 describe-instances --instance-ids i-09a51f9f4186b111e --query 'Reservations[].Instances[].PublicIpAddress' --output text)
-          echo "::set-output name=ip::$ip"
+#     - name: Get EC2 public IP address
+#       id: ec2-ip
+#       run: |
+#           instance_id="i-09a51f9f4186b111e"
+#           ip=$(aws ec2 describe-instances --instance-ids i-09a51f9f4186b111e --query 'Reservations[].Instances[].PublicIpAddress' --output text)
+#           echo "::set-output name=ip::$ip"
           
     - name: Check out code
       uses: actions/checkout@v2
