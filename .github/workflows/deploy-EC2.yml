@@ -65,10 +65,8 @@ jobs:
     - name: Get EC2 public IP address
       id: ec2-ip
       run: |
-          ip=$(aws ec2 describe-instances \
-            --filters "Name=tag:Name,Values=instance-for-develop" \
-            --query 'Reservations[].Instances[].PublicIpAddress' \
-            --output text)
+          instance_id="i-09a51f9f4186b111e"
+          ip=$(aws ec2 describe-instances --instance-ids $instance_id --query 'Reservations[].Instances[].PublicIpAddress' --output text)
           echo "::set-output name=ip::$ip"
           
     - name: Check out code
