@@ -66,18 +66,13 @@ jobs:
          sudo apt update
          sudo apt install ssh -y
          pwd
-         mkdir /home/runner/.ssh
-         cd /home/runner/.ssh
+         cd ../../../
+         sudo mkdir /home/runner/.ssh
          sudo chmod 600 /home/runner/.ssh
-         ls -la
-         ls -la /home
-         ls -la /home/runner/
-         ls -la /home/runner/.ssh
-#         mkdir /home/runner/.ssh
-#         sudo chmod 600 /home/runner/.ssh
-#         cd home/runner/.ssh
-#         sudo ssh-keygen -t rsa -q -P "" -y
-#         sudo chmod 400 /home/runner/.ssh/id_rsa.pub
+         cd /home/runner/.ssh
+         sudo ls -la
+         sudo ssh-keygen -t rsa -q -P "" -y
+         sudo chmod 400 /home/runner/.ssh/id_rsa.pub
          
     - name: Check out code
       uses: actions/checkout@v2
