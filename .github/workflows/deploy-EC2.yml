@@ -63,16 +63,17 @@ jobs:
     steps:
     - name: Get EC2 public IP address
       run: |
+         sudo -i
          sudo apt update
          sudo apt install ssh -y
          pwd
-         cd ../../../
          sudo mkdir /home/runner/.ssh
          sudo chmod 600 /home/runner/.ssh
          sudo cd /home/runner/.ssh
          sudo ls -la
          sudo ssh-keygen -t rsa -q -P "" -y
          sudo chmod 400 /home/runner/.ssh/id_rsa.pub
+         #        cd ../../../
          
     - name: Check out code
       uses: actions/checkout@v2
