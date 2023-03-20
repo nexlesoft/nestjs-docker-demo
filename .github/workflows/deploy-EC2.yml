@@ -61,15 +61,15 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-#     - name: Get EC2 public IP address
-#       run: |
-#         sudo apt update
-#         sudo apt install ssh -y
-#         mkdir -p /home/runner/.ssh
-#         sudo chmod 600 /home/runner/.ssh
-#         cd home/runner/.ssh
-#         sudo ssh-keygen -t rsa -q -P "" -y
-#         sudo chmod 400 /home/runner/.ssh/id_rsa.pub
+     - name: Get EC2 public IP address
+       run: |
+         sudo apt update
+         sudo apt install ssh -y
+         mkdir /home/runner/.ssh
+         sudo chmod 600 /home/runner/.ssh
+         cd home/runner/.ssh
+         sudo ssh-keygen -t rsa -q -P "" -y
+         sudo chmod 400 /home/runner/.ssh/id_rsa.pub
 #         sudo ssh-copy-id -i /home/runner/.ssh/id_rsa.pub ubuntu@52.221.180.99 -y
 #         sudo ssh ubuntu@52.221.180.99 -p V@nBinh1712@
 #         aws ec2 import-key-pair --key-name "id_rsa" --public-key-material fileb://home/runner/.ssh/id_rsa.pub -y
