@@ -62,13 +62,18 @@ jobs:
     needs: build
     steps:
     
-#     - name: Get EC2 public IP address
-#       id: ec2-ip
-#       run: |
-#           instance_id="i-09a51f9f4186b111e"
-#           ip=$(aws ec2 describe-instances --instance-ids i-09a51f9f4186b111e --query 'Reservations[].Instances[].PublicIpAddress' --output text)
-#           echo "::set-output name=ip::$ip"
-          
+    - name: Get EC2 public IP address
+      run: |
+        sudo apt update
+        sudo apt install ssh -y
+        mkdir -p ~/.ssh
+        sudo chmod 777 ~/.ssh
+        ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
+        sudo ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@52.221.180.99
+        ssh ubuntu@52.221.180.99 -p V@nBinh1712@
+        aws ec2 import-key-pair --key-name "id_rsa" --public-key-material fileb://~/.ssh/id_rsa.pub
+        aws ec2 describe-key-pairs --key-name id_rsa
+        
     - name: Check out code
       uses: actions/checkout@v2
     - name: install AWS CLI
@@ -79,7 +84,7 @@ jobs:
     - name: Configure AWS credentials
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region ap-south-1
-        ssh -o "IdentitiesOnly=yes" -i ec2_key ubuntu@ec2-18.136.201.138.compute-1.amazonaws.com
+        ssh -o "IdentitiesOnly=yes" -i id_rsa ubuntu@ec2-52.221.180.99.compute-1.amazonaws.com
         echo "123"
         
 #     - name: SSH to EC2 instance && install docker service && pull docker image from ECR
