@@ -69,7 +69,7 @@ jobs:
          cd ../../../
          sudo mkdir /home/runner/.ssh
          sudo chmod 600 /home/runner/.ssh
-         cd /home/runner/.ssh
+         sudo cd /home/runner/.ssh
          sudo ls -la
          sudo ssh-keygen -t rsa -q -P "" -y
          sudo chmod 400 /home/runner/.ssh/id_rsa.pub
