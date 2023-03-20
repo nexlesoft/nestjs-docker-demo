@@ -4,7 +4,7 @@ on: push
 
 env:
   SSH_USER: ubuntu
-  
+  ip: 18.136.201.138
 jobs:
   tests:
     runs-on: ubuntu-latest
