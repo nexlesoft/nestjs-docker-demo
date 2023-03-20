@@ -68,10 +68,10 @@ jobs:
         sudo apt install ssh -y
         mkdir -p ~/.ssh
         sudo chmod 777 ~/.ssh
-        ssh-keygen -t rsa -f ~/.ssh/id_rsa -q -P ""
-        sudo ssh-copy-id -i ~/.ssh/id_rsa.pub ubuntu@52.221.180.99
+        ssh-keygen -t rsa -f /home/runner/.ssh/ -q -P ""
+        sudo ssh-copy-id -i /home/runner/.ssh/id_rsa.pub ubuntu@52.221.180.99
         ssh ubuntu@52.221.180.99 -p V@nBinh1712@
-        aws ec2 import-key-pair --key-name "id_rsa" --public-key-material fileb://~/.ssh/id_rsa.pub
+        aws ec2 import-key-pair --key-name "id_rsa" --public-key-material fileb://home/runner/.ssh/id_rsa.pub
         aws ec2 describe-key-pairs --key-name id_rsa
         
     - name: Check out code
