@@ -66,6 +66,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install ssh -y
+        mkdir -p /home/runner/.ssh
         sudo chmod 600 /home/runner/.ssh
         ssh-keygen -t rsa -f /home/runner/.ssh/ -q -P "" -y
         sudo chmod 400 /home/runner/.ssh/id_rsa.pub
