@@ -84,10 +84,10 @@ jobs:
     - name: SSH to EC2 instance && install docker service && pull docker image from ECR
       uses: appleboy/ssh-action@master
       with:
-          host: 52.221.180.99
-          username: ubuntu
-          password: ${{ secrets.EC2_INSTANCE_PASSWORD }}
-          run: |
-            aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com
-            docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
-            docker images
+       host: ${{ secrets.EC2_HOST }}
+       username: ubuntu
+       key: ${{ secrets.SSH_PRIVATE_KEY }}
+       scripts: |
+          aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com
+          docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
+          docker images
