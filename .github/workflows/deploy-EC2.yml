@@ -63,19 +63,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-#     - name: Get EC2 public IP address
-#       run: |
-#          sudo -i
-#          sudo apt update
-#          sudo apt install ssh -y
-#          pwd
-#          sudo mkdir /home/runner/.ssh
-#          sudo chmod 600 /home/runner/.ssh
-#          sudo cd /home/runner/.ssh
-#          sudo ls -la
-#          sudo ssh-keygen -t rsa -q -P "" -y
-#          sudo chmod 400 /home/runner/.ssh/id_rsa.pub
-#          #        cd ../../../
          
     - name: Check out code
       uses: actions/checkout@v2
@@ -94,10 +81,6 @@ jobs:
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        script: |
             sudo apt update
-            sudo apt install net-tools
-            ifconfig
             pwd
-#            cd ../ && chmod 400 ./key_dev.pem
-#            ssh -i ${{ github.workspace }}/key_dev.pem ubuntu@54.179.169.236
-#            sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
-#            sudo docker images
+            sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
+            sudo docker images
