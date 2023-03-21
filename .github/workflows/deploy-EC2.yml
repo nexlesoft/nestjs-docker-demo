@@ -79,7 +79,8 @@ jobs:
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        script: |
         pwd
- #       sudo apt update -y
- #       sudo aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com
- #       sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
- #       sudo docker images
+        aws configure 
+        sudo apt update -y
+        aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com
+        sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
+        sudo docker images
