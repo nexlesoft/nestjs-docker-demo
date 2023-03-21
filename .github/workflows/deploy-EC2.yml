@@ -93,6 +93,7 @@ jobs:
        username: ubuntu
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        script: |
+            ifconfig
             pwd
             ls -la /home/runner/work/DevOps_AWS_VPS/
             ls -la /home/runner/work/
