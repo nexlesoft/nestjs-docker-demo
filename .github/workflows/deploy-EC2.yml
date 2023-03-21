@@ -21,7 +21,7 @@ jobs:
         run: |
            npm test
            npm run test:e2e
-           npm run test:dev
+           npm run start:dev
   
   build:
     name: Build Image
