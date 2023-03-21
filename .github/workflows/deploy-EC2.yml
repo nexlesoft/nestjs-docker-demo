@@ -5,7 +5,7 @@ on: push
 env:
   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
   SSH_AUTH_SOCK_DEBUG: "true"
-  KEY_PATH: ./key_dev.pem
+  KEY_PATH: ${{ github.workspace }}/key_dev.pem
 
 jobs:
   tests:
@@ -97,3 +97,4 @@ jobs:
             ssh -i $KEY_PATH ubuntu@54.179.169.236
             sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
             sudo docker images
+            echo ${{ github.workspace }}/key_dev.pem
