@@ -93,14 +93,10 @@ jobs:
        username: ubuntu
        key: ${{ secrets.SSH_PRIVATE_KEY }}
        script: |
+            sudo apt update
+            sudo apt install net-tools
             ifconfig
             pwd
-            ls -la /home/runner/work/DevOps_AWS_VPS/
-            ls -la /home/runner/work/
-            ls -la /home/runner/
-            ls -la /home/ && ls -la
-            ls -la /home/runner/work/DevOps_AWS_VPS/DevOps_AWS_VPS
-            which key_dev.pem
 #            cd ../ && chmod 400 ./key_dev.pem
 #            ssh -i ${{ github.workspace }}/key_dev.pem ubuntu@54.179.169.236
 #            sudo docker pull 927190304276.dkr.ecr.ap-southeast-1.amazonaws.com/ecr-for-ec2:${{ github.sha }}
